@@ -1,0 +1,30 @@
+#include <iostream>
+#include <iomanip>
+#include <math.h>
+#include <vector>
+using namespace std;
+void findStdDev(vector<double>&, double);
+int main(){
+	vector<double> vec;
+    double sample(0.0), sum(0.0);
+
+	while(1){
+		cin>>sample;
+		if(sample == -1){findStdDev(vec, sum);}
+		vec.push_back(sample);
+		sum += sample;
+	}
+	system("pause");
+	return 0;
+}
+void findStdDev(vector<double>& vec, double s){
+	double d(0.0), diff, mean, variance;
+	mean = s/vec.size();
+	for(unsigned int i = 0; i < vec.size(); i++){
+		diff = vec[i] - mean;
+		d += pow(diff, 2.0);
+	}
+	variance = d/vec.size();
+	cout<<setprecision(5)<<sqrt(variance);
+
+}

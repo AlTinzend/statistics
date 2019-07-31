@@ -1,0 +1,38 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+void findLine(double, double, double, double, double, double);
+int main()
+{
+	string year;
+	int N, iter, ystart, yend;
+	double x, y, sumx(0), sumy(0), xy(0), x2(0), y2(0), j;
+	cin	>> ystart >> yend;
+	N = yend - ystart + 1;
+	iter = N;
+	while (iter--) {
+		cin >> year >> x >> y;
+		sumx += x;
+		sumy += y;
+		xy += (x*y);
+		x2 += (x*x);
+		y2 += (y*y);
+		
+	}
+	cout << "The coefficients of Y on X are: ";
+	findLine(N, sumx, sumy, xy, x2, y2);
+	cout << endl;
+	system("pause");
+	return 0;
+}
+void findLine(double no, double sx, double sy, double sxy, double sx2, double sy2) {
+	double a0, a1, num, denom, t1, t2;
+	t1 = (sy*sx) / no;
+	num = sxy - t1;
+	t2 = (sx*sx) / no;
+	denom = sx2 - t2;
+	a1 = num / denom;
+	a0 = (sxy - (a1*sx2))/sx;
+	cout << setprecision(13) << a1 << " " << setprecision(13) << a0 <<"\n";
+}
